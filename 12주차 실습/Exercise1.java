@@ -1,4 +1,4 @@
-//sing thread
+//single thread
 /*public class Exercise1 {
 	public static void main(String[] args) {
 		for(int i=0; i<100; i++) {
@@ -33,7 +33,7 @@ public class Exercise1 extends Thread{
 	}
 	public static void main(String[] args) {
 		Thread th= new Exercise1();
-		//Exercise1 Threadµµ °¡´É
+		//Exercise1 ThreadÂµÂµ Â°Â¡Â´Ã‰
 		th.start();
 		
 		//Second
