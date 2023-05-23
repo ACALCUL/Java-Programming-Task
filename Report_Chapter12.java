@@ -59,8 +59,8 @@ public class Report_Chapter12 extends JFrame {
 			});
 			
 			setFocusable(true);
-            requestFocusInWindow();
-            //키보드를 인식할 수 있게 해주는 코드 2줄
+            	requestFocusInWindow();
+            	//키보드를 인식할 수 있게 해주는 코드 2줄
             
 		}
 		
