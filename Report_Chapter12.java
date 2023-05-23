@@ -45,7 +45,26 @@ public class Report_Chapter12 extends JFrame {
 					if((thread).isReady()) thread.startGambling();
 				}
 			});
+			
+			addKeyListener(new KeyListener() {
+			    public void keyPressed(KeyEvent e) {
+			        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+			            if ((thread).isReady()) thread.startGambling();
+			        }
+			    }
+
+			    public void keyTyped(KeyEvent e) {}
+
+			    public void keyReleased(KeyEvent e) {}
+			});
+			
+			setFocusable(true);
+            requestFocusInWindow();
+            //키보드를 인식할 수 있게 해주는 코드 2줄
+            
 		}
+		
+		
 	}
 	class GamblingThread extends Thread {
 		JLabel[] label; //게임 숫자를 출력
@@ -57,9 +76,6 @@ public class Report_Chapter12 extends JFrame {
 			//TO DO
 			this.label=label;
 			this.result=result;
-			for(int i=0; i<label.length; i++) {
-				label[i].setText("0");
-			}
 			
 		}
 		boolean isReady() {
