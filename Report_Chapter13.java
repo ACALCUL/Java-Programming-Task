@@ -2,15 +2,37 @@ import java.io.*;
 import java.util.*;
 
 class ContactBook implements Serializable{
+	ArrayList<Contact> list;
+	public ContactBook(ArrayList<Contact> list) {
+		this.list=list;
+	}
+	public ContactBook() {
+		this(new ArrayList<Contact>());
+	}
+	void addContact(Contact con) {
+		list.add(con);
+	}
+	void removeContact(int index) {
+		list.remove(index);
+	}
+	int size() {
+		return list.size();
+	}
+	Contact get(int index) {
+		return list.get(index);
+	}
+}
+
+class Contact{
 	String Name;
 	String Phone;
 	String Email;
-	public ContactBook(String Name, String Phone, String Email) {
+	public Contact(String Name, String Phone, String Email) {
 		this.Name=Name;
 		this.Phone=Phone;
 		this.Email=Email;
 	}
-	public ContactBook() {
+	public Contact() {
 		this("Unknown Name", "Unknown Phone", "Unknown Email");
 	}
 	
@@ -22,17 +44,20 @@ class ContactBook implements Serializable{
 		System.out.println("전화번호 : "+Phone);
 		System.out.println("이메일 : "+Email);
 	}
-	
 }
 
 class CreateFile {
-	ArrayList<ContactBook> list=new ArrayList<ContactBook>();
+	ContactBook conbook;
+	
+	public CreateFile(ContactBook conbook) {
+		this.conbook=conbook;
+	}
 	
 	public void openFile()
 	{	
 		ObjectInputStream input = null;
 		try{
-			input = new ObjectInputStream(new FileInputStream("report10.ser"));
+			input = new ObjectInputStream(new FileInputStream("report13.ser"));
 		}
 		catch(IOException ioException)
 		{
@@ -41,8 +66,9 @@ class CreateFile {
 		
 		try{
 			if(input != null) {
-				list = (ArrayList)input.readObject();
-			}
+				conbook = (ContactBook)input.readObject();
+				//System.out.println("openfile: "+conbook);
+				}
 			input.close();
 		}
 		catch(ClassNotFoundException classNotFoundException)
@@ -60,19 +86,20 @@ class CreateFile {
 	{
 		ObjectOutputStream output=null;
 		try{
-			output = new ObjectOutputStream(new FileOutputStream("report10.ser"));
+			output = new ObjectOutputStream(new FileOutputStream("report13.ser"));
 		}
 		catch(IOException ioException)
 		{
-			System.err.println("Error opening file.");
+			System.err.println("Error opening file.1");
 		}
 		
 		try{
-			output.writeObject(list);
+			//System.out.println("saveFile: "+conbook);
+			output.writeObject(this.conbook);
 		}
 		catch(IOException ioException)
 		{
-			System.err.println("Error opening file.");
+			System.err.println("Error opening file.2");
 		}
 		catch(NoSuchElementException elementExcepition)
 		{
@@ -94,9 +121,19 @@ class CreateFile {
 
 public class Report_Chapter13 {
 	public static void main(String[] args) {
+		/*
+		 * File file1=new File("report13.ser"); 
+		 * file1.setWritable(true);
+		 * file1.setReadable(true);
+		 * 
+		 * System.out.println(file1.canExecute()); 
+		 * System.out.println(file1.canWrite());
+		 * System.out.println(file1.canRead());
+		 */
 		
 		Scanner scanner = new Scanner(System.in);
-		CreateFile file= new CreateFile();
+		ContactBook conbook= new ContactBook();
+		CreateFile file= new CreateFile(conbook);
 		file.saveFile();
 		file.openFile();
 		
@@ -113,8 +150,8 @@ public class Report_Chapter13 {
 				phone= scanner.next();
 				System.out.print("이메일을 입력하시오 : ");
 				email= scanner.next();
-				ContactBook con= new ContactBook(name, phone, email);
-				file.list.add(con);
+				Contact con= new Contact(name, phone, email);
+				file.conbook.addContact(con);
 				break;
 			case 2://주소록 삭제
 				System.out.println("------------------------------------");
@@ -122,22 +159,23 @@ public class Report_Chapter13 {
 				System.out.print("삭제할 주소록의 인덱스를 입력하시오. : ");
 				index = scanner.nextInt();
 				try {
-				file.list.remove(index);
+					file.conbook.removeContact(index);
 				} catch(Exception e) {
 					System.out.println("잘못된 입력입니다 다시 입력하세요");
 				}
 				break;
 			case 3://주소록 출력
-				for(int i=0; i<file.list.size(); i++) {
+				for(int i=0; i<file.conbook.size(); i++) {
 					System.out.println("------------------------------------");
 					System.out.println(i+"번 연락처");
-					ContactBook mycon= file.list.get(i);
-					System.out.println("이름 : "+mycon.Name);
-					System.out.println("전화번호 : "+mycon.Phone);
-					System.out.println("이메일 : "+mycon.Email);
+					con= file.conbook.get(i);
+					System.out.println("이름 : "+con.Name);
+					System.out.println("전화번호 : "+con.Phone);
+					System.out.println("이메일 : "+con.Email);
 				}
 				break;
 			case 4://주소록 저장& 종료
+				//System.out.println(file.conbook.get(0));
 				file.saveFile();
 				scanner.close();
 				System.out.println("프로그램이 종료됩니다.");
