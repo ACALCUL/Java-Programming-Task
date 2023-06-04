@@ -23,7 +23,7 @@ class ContactBook implements Serializable{
 	}
 }
 
-class Contact{
+class Contact implements Serializable{
 	String Name;
 	String Phone;
 	String Email;
@@ -95,11 +95,12 @@ class CreateFile {
 		
 		try{
 			//System.out.println("saveFile: "+conbook);
-			output.writeObject(this.conbook);
+			output.writeObject(conbook);
 		}
 		catch(IOException ioException)
 		{
 			System.err.println("Error opening file.2");
+			ioException.printStackTrace();
 		}
 		catch(NoSuchElementException elementExcepition)
 		{
@@ -122,6 +123,12 @@ class CreateFile {
 public class Report_Chapter13 {
 	public static void main(String[] args) {
 		/*
+		 * File new_file = new File("report13.ser"); if (!new_file.exists()) try {
+		 * new_file.createNewFile(); } catch(IOException e){
+		 * System.err.println("Error creating file."); } else {
+		 * System.out.println("새 파일 생성!"); }
+		 */
+		/*
 		 * File file1=new File("report13.ser"); 
 		 * file1.setWritable(true);
 		 * file1.setReadable(true);
@@ -134,7 +141,8 @@ public class Report_Chapter13 {
 		Scanner scanner = new Scanner(System.in);
 		ContactBook conbook= new ContactBook();
 		CreateFile file= new CreateFile(conbook);
-		file.saveFile();
+		//file.saveFile();
+		//위의 코드는 맨 처음 코드를 실행할때만 필요 그 이후부터는 필요 X
 		file.openFile();
 		
 		while(true) {
@@ -175,12 +183,10 @@ public class Report_Chapter13 {
 				}
 				break;
 			case 4://주소록 저장& 종료
-				//System.out.println(file.conbook.get(0));
 				file.saveFile();
 				scanner.close();
 				System.out.println("프로그램이 종료됩니다.");
 				System.exit(0);
-				break;
 			default:
 				System.out.println("잘못된 입력입니다 다시 입력하세요.");
 			}
