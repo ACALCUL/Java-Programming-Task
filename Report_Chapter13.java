@@ -143,6 +143,7 @@ public class Report_Chapter13 {
 		CreateFile file= new CreateFile(conbook);
 		//file.saveFile();
 		//위의 코드는 맨 처음 코드를 실행할때만 필요 그 이후부터는 필요 X
+		//그 이후에 사용하면 파일이 계속 초기화 됨
 		file.openFile();
 		
 		while(true) {
