@@ -9,7 +9,16 @@ public class LabelEx extends JFrame{
 		Container c = getContentPane();
 		//c.setBackground(Color.ORANGE);
 		c.setLayout(new FlowLayout());
-			
+		
+		/* 레이블 생성법
+		 * JLabel(): 빈 레이블
+		 * JLabel(ImageIcon img): 이미지 레이블
+		 * JLabel(String text): 문자열 레이블
+		 * JLabel(String text, ImageIcon img): 문자열과 이미지 모두 가진 레이블 
+		 * 위의 코드에서 세번째 인자로 SwingConstants.LEFT등을 넣어 텍스트 위치 설정 가능
+		 * JButton도 똑같이 사용 가능
+		*/
+		
 		JLabel textLabel = new JLabel("제임스 고슬링 입니더!");
 		
 		//이미지가 들어간 레이블 만들기
