@@ -10,6 +10,7 @@ public class CheckBoxEx extends JFrame{
 		
 		JCheckBox apple=new JCheckBox("사과");
 		JCheckBox pear=new JCheckBox("배", true);//선택 상태의 체크박스 생성
+		//두 번째 인자로 ImageIcon을 넣어 이미지 추가 가능(필수적으로 넣지는 않음)
 		JCheckBox cherry=new JCheckBox("체리");
 		
 		c.add(apple);
