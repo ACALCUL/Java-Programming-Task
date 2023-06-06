@@ -13,6 +13,7 @@ public class PanelEx extends JFrame{
 		JButton l0 = new JButton("Test");
 		JButton l1 = new JButton("Test1");
 		JButton l2 = new JButton("Test2");
+		//Container뿐만 아니라 JPanel에도 배치관리자를 달 수 있음
 		p.setLayout(new GridLayout(2,1,5,5));
 		p.add(l1);
 		p.add(l2);
@@ -21,6 +22,7 @@ public class PanelEx extends JFrame{
 		p2.setLayout(new GridLayout(1,2, 5, 5));
 		p2.add(l0);
 		p2.add(p);
+		//contentPane의 배치관리자를 이용하여 남쪽에 배치
 		contentPane.add(p2, BorderLayout.SOUTH);
 		
 		/*JLabel la=new JLabel("Hello, Press Buttons!");
