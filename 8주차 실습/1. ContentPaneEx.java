@@ -21,6 +21,6 @@ public class ContentPaneEx extends JFrame{
 	}
 	public static void main (String[] args) {
 		new ContentPaneEx();
-		//굳이 대입 안해도 화명이 뜸
+		//굳이 대입 안해도 화면이 뜸
 	}
 }
