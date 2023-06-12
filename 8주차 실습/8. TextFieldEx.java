@@ -12,6 +12,7 @@ public class TextFieldEx extends JFrame{
 		*JTextField(int col): 입력창의 열의 개수가 col인 텍스트 필드
 		*JTextField(String text): text 문자열로 초기화된 텍스트 필드
 		*JTextField(String text, int col): text 문자열로 초기화하고 입력창 열의 개수가 col인 텍스트 필드
+		*JTextArea는 나머지는 TextField와 같지만 rows가 col 앞에 주어져야 함
 		*/
 		
 		c.add(new JLabel("이름"));
