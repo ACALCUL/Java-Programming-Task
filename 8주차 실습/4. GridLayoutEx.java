@@ -16,6 +16,7 @@ public class GridLayoutEx extends JFrame{
 			String text=Integer.toString(i);
 			JButton button = new JButton(text);
 			contentPane.add(button);
+			//오른쪽으로, 아래로 순서대로 배치됨
 		}
 	
 		
