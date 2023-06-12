@@ -8,6 +8,12 @@ public class TextFieldEx extends JFrame{
 		Container c=getContentPane();
 		c.setLayout(new FlowLayout());
 		
+		/*JTextField(): 빈 텍스트 빌드
+		*JTextField(int col): 입력창의 열의 개수가 col인 텍스트 필드
+		*JTextField(String text): text 문자열로 초기화된 텍스트 필드
+		*JTextField(String text, int col): text 문자열로 초기화하고 입력창 열의 개수가 col인 텍스트 필드
+		*/
+		
 		c.add(new JLabel("이름"));
 		c.add(new JTextField(20));
 		c.add(new JLabel("학과"));
